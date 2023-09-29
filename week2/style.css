@@ -11,6 +11,9 @@ header {
     background-color: #A5F7E4;
     color: #fff;
     padding: 20px;
+    position:sticky;
+    position:-webkit-sticky;
+    top:0px;
 }
 
 .headeraH1 {
@@ -81,12 +84,7 @@ nav a {
     
 }
 
-#bar {
-    position:sticky;
-    position:-webkit-sticky;
-    top:0px;
-    
-}
+
 
 
 
