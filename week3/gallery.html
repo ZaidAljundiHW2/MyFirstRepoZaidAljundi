@@ -5,77 +5,52 @@
   <title>Gallery - Wanderlust Voyages</title>
   <link rel="stylesheet" href="style.css">
   <style>
-   .gallery-container {
-	    margin: 0 auto;
-	    display: flex;
-	    flex-wrap: wrap;
-	    justify-content: space-between;
-	    margin-top: 40px;
-  }
+    .mySlides {
+      display: none;
+      position:absolute;
+      align-items: center;
+      justify-content: center;
+      padding: 25px;
+      padding-left: 270px;
+      height:450px;
+    }
 
-   .gallery-container img {
-	    width: 24%;
-	    margin-bottom: 20px;
-	    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-  }
+    .mySlides img {
+      border: 3px solid white;
+    }
 
-  * {
-box-sizing: border-box;
-}
-.slideshow-img {
-vertical-align: middle;
-width: 100%;
-}
+    .container {
 
-/* Position the image container (needed to position the left and right
-arrows) */
-.container {
-position: relative;
-}
-/* Hide the images by default */
-.mySlides {
-display: none;
-}
-/* Add a pointer when hovering over the thumbnail images */
-.cursor {
-cursor: pointer;
-}
-/* Next & previous buttons */
-.prev,
-.next {
-cursor: pointer;
-position: absolute;
-top: 40%;
-width: auto;
-padding: 16px;
-margin-top: -50px;
-color: white;
-font-weight: bold;
-font-size: 20px;
-border-radius: 0 3px 3px 0;
-user-select: none;
--webkit-user-select: none;
-}
+      background-color: black;
+      height: 550px;
+      position:relative;
+      display: flex;
+      
+    }
 
-/* Position the "next button" to the right */
-.next {
-right: 0;
-border-radius: 3px 0 0 3px;
-}
-/* On hover, add a black background color with a little bit see-through */
-.prev:hover,
-.next:hover {
-background-color: rgba(0, 0, 0, 0.8);
-}
+    .prev, .next {
+      position: absolute;
+      top:0;
+      background-color: #0074d9;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      height:100%;
+    }
+    
 
-/* Number text (1/3 etc) */
-  .numbertext {
-    color: #f2f2f2;
-    font-size: 12px;
-    padding: 8px 12px;
-    position: absolute;
-    top: 0;
-}
+    .prev {
+      left:0;  
+    }
+
+    .next {
+      right:0;  
+    }
+    
+    
+    
+
+    
 
 
 
@@ -103,55 +78,58 @@ background-color: rgba(0, 0, 0, 0.8);
 
       <div class="mySlides">
         <div class="numbertext"></div>
-        <img src="images/1.jpeg" alt="Spa Image 1">
+        <img src="https://cfsjets.com/wp-content/uploads/2019/07/New-No-Plane-No-Gain-Resource-Establishes-%E2%80%98The-Case-for-Business-Aviation%E2%80%99.jpg" alt="Spa Image 1">
         
       </div>
 
       <div class="mySlides">
         <div class="numbertext"></div>
-        <img src="images/2.jpeg" alt="Spa Image 2">
+        <img src="https://thoth.pickvisa.com/wp-content/uploads/2021/12/9ac1a88536da40ec94e4b160d29d35f3.jpg" alt="Spa Image 2">
         
       </div>
 
       <div class="mySlides">
         <div class="numbertext"></div>
-        <img src="images/3.jpeg" alt="Spa Image 3">
+        <img src="https://i.insider.com/5ed7f44c2618b916c53d43d5?width=1200&format=jpeg" alt="Spa Image 3">
         
       </div>
 
       <div class="mySlides">
         <div class="numbertext"></div>
-        <img src="images/4.jpeg" alt="Spa Image 4">
+        <img src="https://www.ultimatekilimanjaro.com/wp-content/uploads/2023/08/dykh.jpg" alt="Spa Image 4">
         
       </div>
 
       <div class="mySlides">
         <div class="numbertext"></div>
-        <img src="images/5.jpeg" alt="Spa Image 5">
+        <img src="https://www.traveldailymedia.com/assets/2019/02/Fitness-and-Wellness-Travel-Trends.jpg" alt="Spa Image 5">
         
       </div>
 
       <div class="mySlides">
         <div class="numbertext"></div>
-        <img src="images/6.jpeg" alt="Spa Image 6">
+        <img src="https://images.unsplash.com/photo-1605207693166-394b929e8a1a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8aGF3YWlpJTIwc3Vuc2V0fGVufDB8fDB8fHww&w=1000&q=80" alt="Spa Image 6">
         
       </div>
 
       <div class="mySlides">
         <div class="numbertext"></div>
-        <img src="images/7.jpeg" alt="Spa Image 7">
+        <img src="https://classicfighters.org/wp-content/uploads/2023/06/bush-plane-on-the-ground.jpeg" alt="Spa Image 7">
 
       </div>
 
       <div class="mySlides">
         <div class="numbertext"></div>
-        <img src="images/8.jpeg" alt="Spa Image 8">
+        <img src="https://www.karnatakatourism.org/wp-content/uploads/2021/03/Mattu-Beach-1000x500-1.jpg" alt="Spa Image 8">
         
       </div>
 
-      <a class="next">next</a>
 
-      <a class="prev">prev</a>
+    
+      <button class="next" onclick="nextSlide()">Next</button>
+      <button class="prev" onclick="prevSlide()">Prev</button>
+      
+      
 
 
 
@@ -237,64 +215,59 @@ background-color: rgba(0, 0, 0, 0.8);
  </div>
 
  <script>
-    let slideCount = 1;
+    let slideCount = 0;
+    let y= document.getElementsByClassName("mySlides");
+
+    document.addEventListener("DOMContentLoaded", function() {
+      y[0].style.display="block";
+    })
+
+    
 
     function nextSlide(){
+
+
+      let x = document.getElementsByClassName("mySlides");
+      if (slideCount < x.length - 1) {
         slideCount++;
-        let x = document.getElementsByClassName("mySlides");
-        for (var i = 1; i < x.length + 1; i++) {
+        for (var i = 0; i < x.length; i++) {
 
             x[i].style.display="none";
         }
 
-        if (slideCount > x.length) {
+        
 
-            alert("You have reached the end of the SlideShow");
-            slideCount = x.length;
-
-        }
-
-        else {
-            x[slideCount].style.display="absolute";
-        }
+        
+        x[slideCount].style.display="block";
+      }
+      
+      else {
+        alert("You are at the end of the slideshow.");
+      }
+        
 
 
     }
 
     function prevSlide(){
+      if (slideCount > 0) {
         slideCount--;
         let x = document.getElementsByClassName("mySlides");
-        for (var i = 1; i < x.length + 1; i++) {
+        for (var i = 0; i < x.length; i++) {
 
             x[i].style.display="none";
         }
 
-        if (slideCount = 0) {
+        x[slideCount].style.display="block";
+      }
+        
+      else {
+        alert("You are at the beginning of the slideshow.");
+      }
 
-            alert("You have reached the end of the SlideShow");
-            slideCount = 1;
-
-        }
-
-        else {
-            x[slideCount].style.display="absolute";
-
-        }
+        
 
     }
- </script>
-
- <script>
-
-  let slideIndex = 1;
-
-  showSlides(slideIndex);
-  function plusSlides(n) {
-    showSlides(slideIndex += n);
-  }
-
-
-
  </script>
 </body>
 </html>
