@@ -46,11 +46,75 @@
     .next {
       right:0;  
     }
-    
-    
-    
 
-    
+    #feedback h2, h1 {
+      color: #0f2027; 
+      text-align: center;
+    }
+
+    #feedback {
+      border-radius:4px;
+      padding:20px;
+      border-color:whitesmoke;
+      width:500px;
+      margin:20vh auto 0 auto;
+      font-size: 12px;
+      align-items: center;
+
+    }
+
+    #submit input {
+      padding:10px;
+      margin-top:10px;
+      width:100%;
+      color:white;
+      background-color:  rgb(41, 57, 194);
+      border:none;
+      border-radius: 4px;
+
+    }
+
+    .input-control {
+      display:flex;
+      flex-direction: column;
+
+    }
+
+    .input-control input {
+      border: 2px solid #f0f0f0;
+      border-radius: 4px; 
+      display: block; 
+      font-size: 12px; 
+      padding: 10px; 
+      width: 100%; 
+    }
+
+    .input-control input:focus {
+      outline: 0; 
+    }
+
+    .error {
+      border-width: 3px;
+      border-style:solid;
+      border-color: red;
+    }
+
+    .errortext {
+      color: #ff3860;
+      font-size: 9px;
+      height: 13px;
+
+    }
+
+    .success {
+      border-color: #09c372;
+    }
+
+    .successtext {
+      color: #09c372;
+      font-size: 9px;
+      height: 13px;
+    }
 
 
 
@@ -136,64 +200,6 @@
 
 
     </div>
-    <!--<div class="container">
-
-      <div class="mySlides">
-        <div class="numbertext"></div>
-        <img src="images/1.jpeg" alt="Spa Image 1">
-      </div>
-      <div class="mySlides">
-        <div class="numbertext"></div>
-        <img src="images/2.jpeg" alt="Spa Image 2">
-      </div>
-      <div class="mySlides">
-        <div class="numbertext"></div>
-        <img src="images/3.jpeg" alt="Spa Image 3">
-      </div>
-      <div class="mySlides">
-        <div class="numbertext"></div>
-        <img src="images/4.jpeg" alt="Spa Image 4">
-      </div>
-      <div class="mySlides">
-        <div class="numbertext"></div>
-        <img src="images/5.jpeg" alt="Spa Image 5">
-      </div>
-      <div class="mySlides">
-        <div class="numbertext"></div>
-        <img src="images/6.jpeg" alt="Spa Image 6">
-      </div>
-      <div class="mySlides">
-        <div class="numbertext"></div>
-        <img src="images/7.jpeg" alt="Spa Image 7">
-      </div>
-      <div class="mySlides">
-        <div class="numbertext"></div>
-        <img src="images/8.jpeg" alt="Spa Image 8">
-      </div>
-      <a class="next" onclick="nextSlide()">
-
-      </a>
-
-      <a class="prev" onclick="prevSlide()">
-
-      </a>
-
-    </div>-->
-  
-  <!--<main class="services">
-      <h1>Gallery</h1>
-
-		<div class="gallery-container">
-			<img src="images/1.jpeg" alt="Spa Image 1">
-			<img src="images/2.jpeg" alt="Spa Image 2">
-			<img src="images/3.jpeg" alt="Spa Image 3">
-			<img src="images/4.jpeg" alt="Spa Image 4">
-			<img src="images/5.jpeg" alt="Spa Image 5">
-			<img src="images/6.jpeg" alt="Spa Image 6">
-			<img src="images/7.jpeg" alt="Spa Image 7">
-			<img src="images/8.jpeg" alt="Spa Image 8">
-		</div>
-  -->
 
 
    <!-- Call to Action -->
@@ -212,9 +218,41 @@
       </ul>
     <p >&copy; 2024 Wanderlust Voyages | Travel Agency. All rights reserved.</p>
   </footer>
- </div>
+ </div>  
 
- <script>
+  <form id="feedback">
+
+    <h1>Feedback</h1>
+
+    <div class="input-control">
+      <div id="user">
+        <h2>Username:</h2>
+        <input type="text">
+      </div>
+  
+      <div id="email">
+        <h2>Email:</h2>
+        <input type="email">
+      </div>
+  
+      <div id="pass">
+        <h2>Password:</h2>
+        <input type="text">
+      </div>
+  
+      <div id="confpass">
+        <h2>Confirm Password:</h2>
+        <input type="text">
+      </div>
+  
+      <div id="submit">
+        <input type="submit" onclick="clickSubmit(this)">
+      </div>
+
+    </div>
+  </form>
+
+ <script name="slideshow">
     let slideCount = 0;
     let y= document.getElementsByClassName("mySlides");
 
@@ -268,6 +306,57 @@
         
 
     }
+
+    document.getElementById("feedback").addEventListener("submit", function(event) {
+      
+      event.preventDefault();
+      let x = document.getElementsByTagName("input");
+      let t = document.createElement("p");
+      let y = document.createElement("y");
+      for (let i = 0; i < x.length - 1; i++) {
+        if (x[i].value === "") {
+
+          x[i].style.border="3px solid red";
+          y = document.createElement("p");
+          y.innerHTML="Field is empty.";
+          y.classList.add("errortext");
+          x[i].parentNode.appendChild(y);
+        }
+
+        
+
+        else {
+          
+          x[i].style.border="3px solid green";
+          if (y && y.parentNode) {
+            y.parentNode.removeChild(y);
+            
+          }
+
+          let t = document.createElement("p");
+          t.innerHTML = "Field is now full.";
+          t.classList.add("successtext");
+          x[i].parentNode.appendChild(t);
+          
+        }
+
+
+        if (x[2].value !== x[3].value) {
+          let y = document.createElement("p");
+          y.innerHTML="Passwords do not match.";
+          y.classList.add("errortext");
+          x[i].parentNode.appendChild(y);
+
+        }
+
+        
+      }
+      
+    })
+
+    
  </script>
+
+
 </body>
 </html>
