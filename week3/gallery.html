@@ -103,6 +103,7 @@
       color: #ff3860;
       font-size: 9px;
       height: 13px;
+      display:none;
 
     }
 
@@ -114,6 +115,28 @@
       color: #09c372;
       font-size: 9px;
       height: 13px;
+      display: none;
+    }
+
+    .errortextpass {
+      color: #ff3860;
+      font-size: 9px;
+      height: 13px;
+      display:none;
+    }
+
+    .successtextpass {
+      color: #09c372;
+      font-size: 9px;
+      height: 13px;
+      display: none;
+    }
+
+    #emailerror {
+      color: #ff3860;
+      font-size: 9px;
+      height: 13px;
+      display:none;
     }
 
 
@@ -228,21 +251,34 @@
       <div id="user">
         <h2>Username:</h2>
         <input type="text">
+        <p class="errortext">Field is empty.</p>
+        <p class="successtext">Field is now full.</p>
       </div>
   
       <div id="email">
         <h2>Email:</h2>
-        <input type="email">
+        <input type="text" id ="emailinput">
+        <p class="errortext">Field is empty.</p>
+        <p class="successtext">Field is now full.</p>
+        <p id="emailerror">Email needs "@".</p>
       </div>
   
       <div id="pass">
         <h2>Password:</h2>
-        <input type="text">
+        <input type="text" id="password">
+        <p class="errortext">Field is empty.</p>
+        <p class="successtext">Field is now full.</p>
+        <p class="errortextpass">Passwords do not match.</p>
+        <p class="successtextpass">Passwords match.</p>
       </div>
   
       <div id="confpass">
         <h2>Confirm Password:</h2>
-        <input type="text">
+        <input type="text" id="confirmpassword">
+        <p class="errortext">Field is empty.</p>
+        <p class="successtext">Field is now full.</p>
+        <p class="errortextpass">Passwords do not match.</p>
+        <p class="successtextpass">Passwords match.</p>
       </div>
   
       <div id="submit">
@@ -311,16 +347,19 @@
       
       event.preventDefault();
       let x = document.getElementsByTagName("input");
-      let t = document.createElement("p");
-      let y = document.createElement("y");
+      let y = document.getElementsByClassName("errortext");
+      let z = document.getElementsByClassName("successtext");
+      let pass = document.getElementById("password");
+      let confpass = document.getElementById("confirmpassword");
+      let passmessagesuccess = document.getElementsByClassName("successtextpass");
+      let passmessageerror = document.getElementsByClassName("errortextpass");
+
       for (let i = 0; i < x.length - 1; i++) {
         if (x[i].value === "") {
 
           x[i].style.border="3px solid red";
-          y = document.createElement("p");
-          y.innerHTML="Field is empty.";
-          y.classList.add("errortext");
-          x[i].parentNode.appendChild(y);
+          y[i].style.display="block";
+          z[i].style.display="none";
         }
 
         
@@ -328,29 +367,47 @@
         else {
           
           x[i].style.border="3px solid green";
-          if (y && y.parentNode) {
-            y.parentNode.removeChild(y);
-            
-          }
-
-          let t = document.createElement("p");
-          t.innerHTML = "Field is now full.";
-          t.classList.add("successtext");
-          x[i].parentNode.appendChild(t);
-          
-        }
-
-
-        if (x[2].value !== x[3].value) {
-          let y = document.createElement("p");
-          y.innerHTML="Passwords do not match.";
-          y.classList.add("errortext");
-          x[i].parentNode.appendChild(y);
-
+          z[i].style.display="block";
+          y[i].style.display="none";
         }
 
         
       }
+
+      let email = document.getElementById("emailinput");
+      let emailtext = document.getElementById("emailerror");
+      let emailVal = email.value;
+
+      for (let i = 0; i < emailVal.length; i++) {
+        if (emailVal[i] !== "@") {
+          email.style.border = "3px solid red";
+          emailtext.style.display = "block";
+        }
+
+        else {
+          email.style.border = "3px solid green";
+          emailtext.style.display = "none";
+          break;
+        }
+      }
+
+      for (let i = 0; i < passmessageerror.length; i++) {
+        if (pass.value === confpass.value && pass.value !== "" && confpass.value !== "") {
+        passmessagesuccess[i].style.display="block";
+        passmessageerror[i].style.display="none";
+      }
+
+      else {
+        passmessageerror[i].style.display="block";
+        passmessagesuccess[i].style.display="none";
+      }
+
+      }
+
+      
+
+
+
       
     })
 
