@@ -46,10 +46,36 @@ exports.signup = (req, res) => {
                     message:"User registered"
                 });
             }
-        })
 
+            
+        });
+        
         res.send("form submitted.");
-    })
+    });
 
     
+
+    
+};
+
+exports.login = (req, res) => {
+    const { email, password } = req.body;
+
+    db.query("SELECT * FROM table1 WHERE email = ?", [email], async (error, result) => {
+        if (error) {
+            console.log(error);
+        }
+
+        if (result.length === 0) {
+            return res.send("User not found");
+        }
+
+        const isPasswordValid = await bcrypt.compare(password, result[0].password);
+
+        if (!isPasswordValid) {
+            return res.send("Invalid password");
+        }
+
+        res.render("profile.hbs");
+    });
 };
